@@ -16,7 +16,7 @@ public class Banco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 15, nullable = false)
+    @Column(length = 30, nullable = false)
     private String nombre;
     @Column(length = 50, nullable = false)
     private String link;

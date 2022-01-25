@@ -10,11 +10,11 @@ import lombok.Data;
 public class BancoResource {
     @NotNull
     @NotBlank(message = "Nombre requerido")
-    @Size(max = 15)
+    @Size(max = 30)
     private String nombre;
 
     @NotNull
     @NotBlank(message = "Link requerido")
-    @Size(max = 15)
+    @Size(max = 50)
     private String link;
 }

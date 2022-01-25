@@ -31,6 +31,8 @@ public class BancoController {
         return banco;
     }
 
+    // TODO: Ver forma de modificar la lista para que retorne una lista de resources
+    // del banco
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Banco> getAll() throws Exception {
         return bancoService.findAll();
@@ -45,4 +47,5 @@ public class BancoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    // TODO: implementacion del resto de metodos crud
 }
