@@ -2,6 +2,7 @@ package com.xantx.financeapp.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.xantx.financeapp.entity.Usuario;
 import com.xantx.financeapp.repository.UsuarioRepository;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuariosServiceImpl implements CrudService<Usuario, String> {
+public class UsuariosServiceImpl implements CrudService<Usuario, UUID> {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -27,12 +28,12 @@ public class UsuariosServiceImpl implements CrudService<Usuario, String> {
     }
 
     @Override
-    public Optional<Usuario> findById(String id) throws Exception {
+    public Optional<Usuario> findById(UUID id) throws Exception {
         return usuarioRepository.findById(id);
     }
 
     @Override
-    public Usuario update(String id, Usuario entity) throws Exception {
+    public Usuario update(UUID id, Usuario entity) throws Exception {
         Usuario updatedUsuario = null;
         if (usuarioRepository.findById(id).isPresent()) {
             updatedUsuario = usuarioRepository.save(entity);
@@ -41,7 +42,7 @@ public class UsuariosServiceImpl implements CrudService<Usuario, String> {
     }
 
     @Override
-    public void deleteById(String id) throws Exception {
+    public void deleteById(UUID id) throws Exception {
         usuarioRepository.deleteById(id);
         ;
     }
