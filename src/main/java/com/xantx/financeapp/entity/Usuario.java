@@ -24,7 +24,7 @@ public class Usuario {
     @Column(length = 40, nullable = false)
     private String password;
     @Column(nullable = false)
-    private Double total;
+    private Double total = 0.0;
 
     @OneToMany(mappedBy = "usuario")
     private List<Fondo> fondos;
