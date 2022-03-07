@@ -31,7 +31,7 @@ public class Fondo {
     private Banco banco;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "uuid")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "fondo")

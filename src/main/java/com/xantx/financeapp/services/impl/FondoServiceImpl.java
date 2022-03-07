@@ -5,13 +5,13 @@ import java.util.Optional;
 
 import com.xantx.financeapp.entity.Fondo;
 import com.xantx.financeapp.repository.FondoRepository;
-import com.xantx.financeapp.services.common.CrudService;
+import com.xantx.financeapp.services.FondoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FondoServiceImpl implements CrudService<Fondo, Long> {
+public class FondoServiceImpl implements FondoService {
 
     @Autowired
     private FondoRepository fondoRepository;

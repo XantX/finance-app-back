@@ -5,13 +5,13 @@ import java.util.Optional;
 
 import com.xantx.financeapp.entity.Transaccion;
 import com.xantx.financeapp.repository.TransaccionRepository;
-import com.xantx.financeapp.services.common.CrudService;
+import com.xantx.financeapp.services.TransaccionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransaccionServiceImpl implements CrudService<Transaccion, Long> {
+public class TransaccionServiceImpl implements TransaccionService {
 
     @Autowired
     private TransaccionRepository transaccionRepository;

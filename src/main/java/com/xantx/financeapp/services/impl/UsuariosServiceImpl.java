@@ -5,13 +5,13 @@ import java.util.Optional;
 
 import com.xantx.financeapp.entity.Usuario;
 import com.xantx.financeapp.repository.UsuarioRepository;
-import com.xantx.financeapp.services.common.CrudService;
+import com.xantx.financeapp.services.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuariosServiceImpl implements CrudService<Usuario, Long> {
+public class UsuariosServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
