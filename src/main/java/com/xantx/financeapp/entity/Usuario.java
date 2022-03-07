@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -27,5 +29,6 @@ public class Usuario {
     private Double total = 0.0;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Fondo> fondos;
 }
