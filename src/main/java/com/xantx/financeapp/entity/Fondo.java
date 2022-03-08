@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -32,6 +34,7 @@ public class Fondo {
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "fondo")
