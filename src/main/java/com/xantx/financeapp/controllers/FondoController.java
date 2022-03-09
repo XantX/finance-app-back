@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/fondos")
+@RequestMapping("api")
 public class FondoController {
     @Autowired
     private FondoService fondoService;
@@ -42,7 +42,7 @@ public class FondoController {
         return fondo;
     }
 
-    @PostMapping(path = "/usuarios/{usuario_id}/bancos/{banco_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/usuarios/{usuario_id}/bancos/{banco_id}/fondos", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> save(@Valid @RequestBody FondoResource resources,
             @PathVariable Long banco_id,
             @PathVariable Long usuario_id) {
@@ -66,7 +66,7 @@ public class FondoController {
         }
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/fondos", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAll() {
         try {
             List<Fondo> fondos = fondoService.findAll();
@@ -79,5 +79,19 @@ public class FondoController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping(path = "/usuarios/{usuario_id}/fondos", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllFondosByUserId(@PathVariable Long usuario_id) {
+        try {
+            Optional<Usuario> usuario = usuarioService.findById(usuario_id);
+            if (!usuario.isPresent()) {
+                return new ResponseEntity<>("Usuario de id no encontrado: " + usuario_id, HttpStatus.NOT_FOUND);
+            }
+            List<Fondo> fondos = fondoService.findByUsuario(usuario.get());
+            return new ResponseEntity<List<Fondo>>(fondos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

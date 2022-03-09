@@ -29,7 +29,7 @@ public class Transaccion {
     @Column(length = 30)
     private String descripcion;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fondo_id", referencedColumnName = "id")
     @JsonIgnore
     private Fondo fondo;

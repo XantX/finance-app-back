@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.xantx.financeapp.entity.Fondo;
+import com.xantx.financeapp.entity.Usuario;
 import com.xantx.financeapp.repository.FondoRepository;
 import com.xantx.financeapp.services.FondoService;
 
@@ -43,6 +44,11 @@ public class FondoServiceImpl implements FondoService {
     @Override
     public void deleteById(Long id) throws Exception {
         fondoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Fondo> findByUsuario(Usuario usuario) {
+        return fondoRepository.findByUsuario(usuario);
     }
 
 }

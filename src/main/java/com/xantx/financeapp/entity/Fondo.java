@@ -28,16 +28,23 @@ public class Fondo {
     @Column(length = 50, nullable = true)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "banco_id", referencedColumnName = "id")
     private Banco banco;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonIgnore
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "fondo")
+    @Column
+    private Double total = 0.0;
+
+    @OneToMany(mappedBy = "fondo", cascade = CascadeType.REMOVE)
     private List<Transaccion> transacciones;
+
+    public void actualizarTotal(Transaccion transaccion) {
+        this.total += transaccion.getCantidad();
+    }
 
 }

@@ -28,4 +28,11 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Fondo> fondos;
+
+    public void updateTotal() {
+        this.total = 0.0;
+        for (Fondo fondo : fondos) {
+            this.total += fondo.getTotal();
+        }
+    }
 }
