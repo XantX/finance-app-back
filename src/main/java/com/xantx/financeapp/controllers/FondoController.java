@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import com.xantx.financeapp.entity.Banco;
 import com.xantx.financeapp.entity.Fondo;
 import com.xantx.financeapp.entity.Usuario;
-import com.xantx.financeapp.resources.FondoResources;
+import com.xantx.financeapp.resources.FondoResource;
 import com.xantx.financeapp.services.BancoService;
 import com.xantx.financeapp.services.FondoService;
 import com.xantx.financeapp.services.UsuarioService;
@@ -36,14 +36,14 @@ public class FondoController {
     @Autowired
     private UsuarioService usuarioService;
 
-    private Fondo ResourceToEntity(FondoResources resource) {
+    private Fondo ResourceToEntity(FondoResource resource) {
         Fondo fondo = new Fondo();
         fondo.setDescription(resource.getDescripcion());
         return fondo;
     }
 
     @PostMapping(path = "/usuarios/{usuario_id}/bancos/{banco_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@Valid @RequestBody FondoResources resources,
+    public ResponseEntity<?> save(@Valid @RequestBody FondoResource resources,
             @PathVariable Long banco_id,
             @PathVariable Long usuario_id) {
         try {

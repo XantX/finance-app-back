@@ -7,10 +7,9 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class FondoResources {
+public class FondoResource {
     @NotNull
     @NotBlank(message = "Descripcion requerida")
     @Size(max = 40)
     private String descripcion;
-
 }

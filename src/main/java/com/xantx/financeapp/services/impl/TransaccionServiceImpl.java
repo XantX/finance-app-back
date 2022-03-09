@@ -3,6 +3,7 @@ package com.xantx.financeapp.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.xantx.financeapp.entity.Fondo;
 import com.xantx.financeapp.entity.Transaccion;
 import com.xantx.financeapp.repository.TransaccionRepository;
 import com.xantx.financeapp.services.TransaccionService;
@@ -43,6 +44,11 @@ public class TransaccionServiceImpl implements TransaccionService {
     @Override
     public void deleteById(Long id) throws Exception {
         transaccionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Transaccion> findByFondo(Fondo fondo) {
+        return transaccionRepository.findByFondo(fondo);
     }
 
 }
