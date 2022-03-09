@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,6 +91,25 @@ public class FondoController {
             }
             List<Fondo> fondos = fondoService.findByUsuario(usuario.get());
             return new ResponseEntity<List<Fondo>>(fondos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping(path = "/usuario/{usuario_id}/fondos/{fondo_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteFondo(@PathVariable Long fondo_id, @PathVariable Long usuario_id) {
+        try {
+            Optional<Usuario> usuario = usuarioService.findById(usuario_id);
+            if (!usuario.isPresent()) {
+                return new ResponseEntity<>("No se encontro el usuario de id: " + usuario_id, HttpStatus.NOT_FOUND);
+            }
+            Optional<Fondo> fondo = fondoService.findById(fondo_id);
+            if (!fondo.isPresent()) {
+                return new ResponseEntity<>("No se encontro el fondo de id: " + fondo_id, HttpStatus.NOT_FOUND);
+            }
+            fondoService.deleteById(fondo_id);
+            usuarioService.updateTotal(usuario_id);
+            return new ResponseEntity<Fondo>(fondo.get(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

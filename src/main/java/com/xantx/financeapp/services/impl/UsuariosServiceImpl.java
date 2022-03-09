@@ -43,7 +43,16 @@ public class UsuariosServiceImpl implements UsuarioService {
     @Override
     public void deleteById(Long id) throws Exception {
         usuarioRepository.deleteById(id);
-        ;
+    }
+
+    @Override
+    public void updateTotal(Long usuario_id) throws Exception {
+        Optional<Usuario> usuario = usuarioRepository.findById(usuario_id);
+        if (usuario.isPresent()) {
+            Usuario usuarioActualizado = usuario.get();
+            usuarioActualizado.updateTotal();
+            usuarioRepository.save(usuarioActualizado);
+        }
     }
 
 }

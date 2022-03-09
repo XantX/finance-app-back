@@ -43,8 +43,15 @@ public class Fondo {
     @OneToMany(mappedBy = "fondo", cascade = CascadeType.REMOVE)
     private List<Transaccion> transacciones;
 
-    public void actualizarTotal(Transaccion transaccion) {
+    public void agrearAlTotal(Transaccion transaccion) {
         this.total += transaccion.getCantidad();
+    }
+
+    public void actualizarTotal() {
+        this.total = 0.0;
+        for (Transaccion transaccion : transacciones) {
+            this.total += transaccion.getCantidad();
+        }
     }
 
 }

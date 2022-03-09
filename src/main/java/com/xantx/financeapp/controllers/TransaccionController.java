@@ -53,7 +53,7 @@ public class TransaccionController {
             }
             Transaccion transaccion = ResourceToEntity(resource);
             Fondo fondoActualizado = fondo.get();
-            fondoActualizado.actualizarTotal(transaccion);
+            fondoActualizado.agrearAlTotal(transaccion);
             transaccion.setFondo(fondoActualizado);
             Fondo fondoActu = fondoService.save(fondoActualizado);
             Usuario usuario = fondoActu.getUsuario();
@@ -93,6 +93,7 @@ public class TransaccionController {
                 return new ResponseEntity<>("transaccion de id: " + transaccion_id.toString(), HttpStatus.NOT_FOUND);
             }
             transaccionService.deleteById(transaccion_id);
+            fondoService.actualizarTotal(fondo_id);
             return new ResponseEntity<Transaccion>(transaccion.get(), HttpStatus.OK);
 
         } catch (Exception e) {

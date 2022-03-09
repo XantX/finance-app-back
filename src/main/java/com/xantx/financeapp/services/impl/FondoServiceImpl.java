@@ -47,8 +47,18 @@ public class FondoServiceImpl implements FondoService {
     }
 
     @Override
-    public List<Fondo> findByUsuario(Usuario usuario) {
+    public List<Fondo> findByUsuario(Usuario usuario) throws Exception {
         return fondoRepository.findByUsuario(usuario);
+    }
+
+    @Override
+    public void actualizarTotal(Long fondo_id) throws Exception {
+        Optional<Fondo> fondo = fondoRepository.findById(fondo_id);
+        if (fondo.isPresent()) {
+            Fondo fondoActualizado = fondo.get();
+            fondoActualizado.actualizarTotal();
+            fondoRepository.save(fondoActualizado);
+        }
     }
 
 }

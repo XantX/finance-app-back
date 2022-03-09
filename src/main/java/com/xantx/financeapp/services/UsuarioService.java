@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UsuarioService extends CrudService<Usuario, Long> {
+    void updateTotal(Long usuario_id) throws Exception;
 }
