@@ -28,6 +28,8 @@ public class Transaccion {
     private Double cantidad;
     @Column(length = 30)
     private String descripcion;
+    @Column(length = 30)
+    String fecha;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fondo_id", referencedColumnName = "id")

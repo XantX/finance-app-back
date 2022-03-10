@@ -12,6 +12,7 @@ import com.xantx.financeapp.resources.TransaccionResource;
 import com.xantx.financeapp.services.FondoService;
 import com.xantx.financeapp.services.TransaccionService;
 import com.xantx.financeapp.services.UsuarioService;
+import com.xantx.financeapp.services.impl.times.TiempoPeru;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,12 +35,15 @@ public class TransaccionController {
     private FondoService fondoService;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private TiempoPeru tiempoPeru;
 
-    private Transaccion ResourceToEntity(TransaccionResource resource) {
+    private Transaccion ResourceToEntity(TransaccionResource resource) throws Exception {
         Transaccion transaccion = new Transaccion();
         transaccion.setCantidad(resource.getCantidad());
         transaccion.setDescripcion(resource.getDescripcion());
         transaccion.setTipo(resource.getTipo());
+        transaccion.setFecha(tiempoPeru.obtenerTiempoActual());
         return transaccion;
     }
 
