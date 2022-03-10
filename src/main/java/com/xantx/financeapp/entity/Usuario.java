@@ -2,6 +2,7 @@ package com.xantx.financeapp.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Usuario {
     @Column(nullable = false)
     private Double total = 0.0;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Fondo> fondos;
 
     public void updateTotal() {

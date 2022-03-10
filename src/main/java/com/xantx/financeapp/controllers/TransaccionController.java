@@ -53,7 +53,8 @@ public class TransaccionController {
         try {
             Optional<Fondo> fondo = fondoService.findById(fondo_id);
             if (!fondo.isPresent()) {
-                return new ResponseEntity<>("Fondo de id: " + fondo_id.toString(), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("No se encontro el fondo de id: " + fondo_id.toString(),
+                        HttpStatus.NOT_FOUND);
             }
             Transaccion transaccion = ResourceToEntity(resource);
             Fondo fondoActualizado = fondo.get();
@@ -75,7 +76,8 @@ public class TransaccionController {
         try {
             Optional<Fondo> fondo = fondoService.findById(fondo_id);
             if (!fondo.isPresent()) {
-                return new ResponseEntity<>("Fondo de id: " + fondo_id.toString(), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("No se encontro el fondo de id: " + fondo_id.toString(),
+                        HttpStatus.NOT_FOUND);
             }
             List<Transaccion> transaciones = transaccionService.findByFondo(fondo.get());
             return new ResponseEntity<List<Transaccion>>(transaciones, HttpStatus.OK);
@@ -90,11 +92,13 @@ public class TransaccionController {
         try {
             Optional<Fondo> fondo = fondoService.findById(fondo_id);
             if (!fondo.isPresent()) {
-                return new ResponseEntity<>("Fondo de id: " + fondo_id.toString(), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("No se encontro el fondo de id: " + fondo_id.toString(),
+                        HttpStatus.NOT_FOUND);
             }
             Optional<Transaccion> transaccion = transaccionService.findById(transaccion_id);
             if (!transaccion.isPresent()) {
-                return new ResponseEntity<>("transaccion de id: " + transaccion_id.toString(), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("No se encontro la transaccion de id: " + transaccion_id.toString(),
+                        HttpStatus.NOT_FOUND);
             }
             transaccionService.deleteById(transaccion_id);
             fondoService.actualizarTotal(fondo_id);
